@@ -1,0 +1,74 @@
+<div></div>
+<button id="button">버튼</button>
+
+<script>
+    let obj = {};
+
+    // 3. mechine 안에서 쓰면 새로 생성되는 오브젝트를 뜻함
+    function mechine() {
+        this.name = 'Kim'; // 새로 생성되는 오브젝트(instance)
+    }
+
+    let object = new mechine();
+
+
+    // 4. 이벤트 리스너
+    // 이벤트 리스너 안에서 this는 e.currentTarget
+    document.getElementById('button').addEventListener('click', function(e) {
+        console.log(this); // e.currentTarget : 지금 이벤트 동작하는곳을 뜻함
+        console.log(e.currentTarget);
+    });
+
+    // 4-1. 이벤트 리스너
+    // Case study 1.
+    document.getElementById('button').addEventListener('click', function(e) {
+        let array = [1, 2, 3];
+        array.forEach(function(data) {
+            console.log(data); // data : araay 배열안에 들어 있던 데이터들을 뜻함
+            console.log(this);
+
+            // Q1. forEach 내 함수에서의 this는 어떤걸 뜻하는지?
+            // QA. 일반함수에서 this : window
+        });
+    });
+
+    // Case study 2.
+    // Q2. 오브젝트 내에서 콜백함수를 쓴다면 this는?
+    let objectTwo = {
+        names : ['Kim', 'Lee', 'Park'],
+        func : function() {
+            console.log(this);  // this : objectTwo의 오브젝트 출력
+            objectTwo.names.forEach(function() {
+                console.log(this); // this : window
+            });
+        }
+    }
+
+    objectTwo.func();
+
+    // Case study 3.
+    let objectThree = {
+        names : ['Kim', 'Lee', 'Park'],
+        func : function() {
+            console.log("1 : " + this);  // this : objectTwo의 오브젝트 출력
+            objectTwo.names.forEach(() => {
+                console.log("2 : " + this); // this : objectTwo의 오브젝트 출력
+
+                // Q3. Case study 2 의 콜백함수를 arrow Function으로 변경 시 this 값은?
+                // console.log("1 : " + this); 값을 그대로 재사용함
+                // 즉, objectThree의 object가 출력됨
+
+                // arrow Function 특징
+                // 내부의 this값을 변화시키지 않음
+                // (외부 this 값 그대로 재사용가능)
+
+            });
+        }
+    }
+
+    objectThree.func();
+
+    // 정리
+    // ※ 함수가 쓰인 위치에 따라 this 값이 변함
+
+</script>
