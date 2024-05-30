@@ -1,0 +1,44 @@
+<div></div>
+<button id="버튼">버튼</button>
+
+<script>
+
+
+    function 기계() { // 오브젝트 생성 기계
+        this.이름 = 'kim' // 인스턴스
+    }
+
+    // 3. this
+    // 함수 기계안에서 쓰면 새로 생성되는 오브젝트(인스턴스)를 뜻함
+
+    let 오브젝트 = new 기계();
+    console.log(오브젝트);
+
+    document.getElementById('버튼').addEventListener('click', function(e){
+        console.log(this); // == e.currentTarget (지금 이벤트가 동작하고 있는 요소를 뜻함)
+        console.log(e.currentTarget);
+    });
+
+    // 4. this
+    // 이벤트리스너 안에서 this는 e.currentTarget
+
+    document.getElementById('버튼').addEventListener('click', function(e){
+        let 어레이 = [1,2,3];
+        어레이.forEach(function(a) {
+            //console.log(a); // a: 어레이 안에 있던 하나하나의 데이터들
+            console.log(this); // window
+        });
+    });
+
+    let 오브젝트2 = {
+        이름들 : ['김', '이', '박'],
+        함수 : function() {
+            오브젝트2.이름들.forEach(function() {
+                console.log(this);
+            })
+        }
+    }
+
+    오브젝트2.함수();
+
+</script>

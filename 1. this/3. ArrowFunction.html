@@ -1,0 +1,57 @@
+<div></div>
+<button id="버튼">버튼</button>
+
+<script>
+
+    let 함수1 = function() {
+
+    }
+
+    // function 키워드 대신 => Arrow function을 이용해서 만들수 있음
+
+    // [ 함수를 만드는 이유?? ]
+    // 1. 코드들을 기능으로 묶고 싶을 때 사용
+    // 2. 입출력 기계를 만들고 싶을 때 사용
+
+    // [ Arrow function 장점 ]
+    // 1. 입출력 기계 만들 때 보기 쉬움
+    // 2. (파라미터 1개면) 소괄호 생략가능
+    // 3. 코드가 한줄이면 중괄호도 생략가능
+
+    // 1. 예시
+    let 함수2 = (a) => { return a + 10; }
+    함수2(5);
+
+    // 2, 3 예시
+    let 함수3 = a => a + 10;
+    함수3(5);
+
+    // [ Arrow function 예시 ]
+    // 1. forEach 콜백함수
+    // 2. 이벤트리스너
+    // 3. object 안의 함수
+
+    // 1. forEach 콜백함수 예시
+    [1,2,3,4].forEach(function(a) { // array 자료 갯수만큼 내부 코드 실행해주셈
+        console.log(a);             // function 괄호의 a는 array 내의 자료들을 뜻함
+    });
+
+    console.log("----------------");
+
+    [1,2,3,4].forEach( b => console.log(b) );
+
+    // 2. 이벤트리스너 예시
+    document.getElementById('버튼').addEventListener('click', (e) => {
+        //console.log(this); //window
+        console.log(e.currentTarget);
+    });
+
+    // 3. object 안의 함수 예시
+    let 오브젝트 = {
+        함수 : () => {
+            console.log(this); // window
+        }
+    }
+    오브젝트.함수();
+
+</script>
