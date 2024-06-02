@@ -1,0 +1,51 @@
+<button id="버튼">버튼이에요</button>
+
+<script>
+
+    // Q1.
+    var 사람 = {
+        name: '손흥민',
+        sayHi: () => {
+            console.log('안녕 나는 ' + 사람.name);
+        }
+    }
+
+    사람.sayHi();
+
+    // Q2. 
+    var 자료 = {
+        data : [1, 2, 3, 4, 5]
+    }
+
+    자료.전부더하기 = function() {
+        let sum = 0;
+        this.data.forEach(function(a) {
+            sum += a
+        });
+        console.log(sum);
+    }
+    
+    자료.전부더하기();
+
+    자료.전부더하기2 = () => {
+        let sum = 0;
+        자료.data.forEach( a => sum += a );
+        console.log(sum);
+    }
+    
+    자료.전부더하기2();
+
+
+    // Q3.
+    //setTimeout(콜백함수, ms단위의 시간)
+
+    document.getElementById('버튼').addEventListener('click', function(e) {
+        let event = e.currentTarget;
+        setTimeout(function() { console.log(event.innerHTML) }, 1000);
+    });
+
+    document.getElementById('버튼').addEventListener('click', function() {
+        setTimeout(() => { console.log(this.innerHTML) }, 1000);
+    });
+
+</script>
